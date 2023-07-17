@@ -1,4 +1,4 @@
-from MainWindow import Ui_Wordle, Ui_GameEnded
+from Templates.MainWindow import Ui_Wordle, Ui_GameEnded
 import sys
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt
