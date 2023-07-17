@@ -37,6 +37,62 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Wordle, Ui_GameEnded):
         self.actualString = ''
 
         self.startButton.clicked.connect(self.newGame)
+        self.A_pushButton.clicked.connect(lambda: self.addChar('A'))
+        self.B_pushButton.clicked.connect(lambda: self.addChar('B'))
+        self.C_pushButton.clicked.connect(lambda: self.addChar('C'))
+        self.D_pushButton.clicked.connect(lambda: self.addChar('D'))
+        self.E_pushButton.clicked.connect(lambda: self.addChar('E'))
+        self.F_pushButton.clicked.connect(lambda: self.addChar('F'))
+        self.G_pushButton.clicked.connect(lambda: self.addChar('G'))
+        self.H_pushButton.clicked.connect(lambda: self.addChar('H'))
+        self.I_pushButton.clicked.connect(lambda: self.addChar('I'))
+        self.J_pushButton.clicked.connect(lambda: self.addChar('J'))
+        self.K_pushButton.clicked.connect(lambda: self.addChar('K'))
+        self.L_pushButton.clicked.connect(lambda: self.addChar('L'))
+        self.M_pushButton.clicked.connect(lambda: self.addChar('M'))
+        self.N_pushButton.clicked.connect(lambda: self.addChar('N'))
+        self.O_pushButton.clicked.connect(lambda: self.addChar('O'))
+        self.P_pushButton.clicked.connect(lambda: self.addChar('P'))
+        self.Q_pushButton.clicked.connect(lambda: self.addChar('Q'))
+        self.R_pushButton.clicked.connect(lambda: self.addChar('R'))
+        self.S_pushButton.clicked.connect(lambda: self.addChar('S'))
+        self.T_pushButton.clicked.connect(lambda: self.addChar('T'))
+        self.U_pushButton.clicked.connect(lambda: self.addChar('U'))
+        self.V_pushButton.clicked.connect(lambda: self.addChar('V'))
+        self.W_pushButton.clicked.connect(lambda: self.addChar('W'))
+        self.X_pushButton.clicked.connect(lambda: self.addChar('X'))
+        self.Y_pushButton.clicked.connect(lambda: self.addChar('Y'))
+        self.Z_pushButton.clicked.connect(lambda: self.addChar('Z'))
+        self.ENTER_pushButton.clicked.connect(self.checkString)
+        self.DELETE_pushButton.clicked.connect(self.delChar)
+
+        self.keyboard = {
+            'A': self.A_pushButton,
+            'B': self.B_pushButton,
+            'C': self.C_pushButton,
+            'D': self.D_pushButton,
+            'E': self.E_pushButton,
+            'F': self.F_pushButton,
+            'G': self.G_pushButton,
+            'H': self.H_pushButton,
+            'I': self.I_pushButton,
+            'J': self.J_pushButton,
+            'K': self.K_pushButton,
+            'L': self.L_pushButton,
+            'M': self.M_pushButton,
+            'N': self.N_pushButton,
+            'O': self.O_pushButton,
+            'P': self.P_pushButton,
+            'Q': self.Q_pushButton,
+            'R': self.R_pushButton,
+            'T': self.T_pushButton,
+            'U': self.U_pushButton,
+            'V': self.V_pushButton,
+            'W': self.W_pushButton,
+            'X': self.X_pushButton,
+            'Y': self.Y_pushButton,
+            'Z': self.Z_pushButton
+        }
 
 
     def newGame(self):
@@ -46,6 +102,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Wordle, Ui_GameEnded):
                 element[i].setText('')
                 element[i].setStyleSheet("border: 2px solid rgb(58,58,60);\n"
                                                             "color: white;\n")
+        
+        for key in self.keyboard.keys():
+            self.keyboard.get(key).setStyleSheet("border: 2px solid rgb(58,58,60);\n"
+                                                    "background-color: rgb(81,83,84);\n"
+                                                    "color: white;")
         
         self.actual_row = 1
         self.actualString = ''
@@ -82,6 +143,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Wordle, Ui_GameEnded):
                                                             "color: white;\n"
                                                             "background-color: rgb(83,141,78)")
     
+    # create a dialog window showing the hidden word and asking for a new game
     def gameEnded(self):
         dialog = QtWidgets.QDialog(self)
         ui_dialog = Ui_GameEnded()
@@ -90,10 +152,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Wordle, Ui_GameEnded):
         ui_dialog.hiddenWord.setText(self.hidden_word)
         ui_dialog.playAgain_Button.clicked.connect(self.newGame)
         ui_dialog.playAgain_Button.clicked.connect(dialog.close)
-
+        dialog.rejected.connect(self.close)
         dialog.exec_()
 
-
+    # check function to see if the written word is in the wordlist
     def isInWordlist(self):
 
         if self.actualString in self.wordlist:
@@ -113,14 +175,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Wordle, Ui_GameEnded):
         
     def colorChars(self):
         chars = list(self.hidden_word)
-        print(chars)
+
         for i in range(len(self.rows[self.actual_row-1])):
           
+             # se l'elemento e' nella stessa posizione
             if self.rows[self.actual_row-1][i].text() in chars[i]:
-                # se l'elemento e' nella stessa posizione
                 self.rows[self.actual_row-1][i].setStyleSheet("border: 2px solid rgb(83,141,78);\n"
                                                             "color: white;\n"
                                                             "background-color: rgb(83,141,78)")
+                self.keyboard.get(chars[i]).setStyleSheet("border: 2px solid rgb(83,141,78);\n"
+                                                            "color: white;\n"
+                                                            "background-color: rgb(83,141,78)")
+            # se l'elemento e' presente ma non nella posizione corretta
             elif self.rows[self.actual_row-1][i].text() in chars:
                 self.rows[self.actual_row-1][i].setStyleSheet("border: 2px solid rgb(181,112,59);\n"
                                                             "color: white;\n"
