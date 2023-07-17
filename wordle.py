@@ -191,6 +191,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Wordle, Ui_GameEnded):
                 self.rows[self.actual_row-1][i].setStyleSheet("border: 2px solid rgb(181,112,59);\n"
                                                             "color: white;\n"
                                                             "background-color: rgb(181,112,59)")
+                self.keyboard.get(self.rows[self.actual_row-1][i].text()).setStyleSheet("border: 2px solid rgb(181,112,59);\n"
+                                                            "color: white;\n"
+                                                            "background-color: rgb(181,112,59)")
     
     def getActualString(self):
          
