@@ -868,6 +868,19 @@ class Ui_Wordle(object):
         self.element_65.setCheckable(True)
         self.element_65.setChecked(True)
         self.element_65.setObjectName("element_65")
+        self.wordlist_Button = QtWidgets.QPushButton(self.centralwidget)
+        self.wordlist_Button.setEnabled(True)
+        self.wordlist_Button.setGeometry(QtCore.QRect(600, 10, 30, 30))
+        self.wordlist_Button.setStyleSheet("border: 2px solid rgb(58,58,60);\n"
+"background-color: rgb(81,83,84);\n"
+"color: white;")
+        self.wordlist_Button.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("icons/icons8-segnalibro-16.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.wordlist_Button.setIcon(icon1)
+        self.wordlist_Button.setIconSize(QtCore.QSize(16, 16))
+        self.wordlist_Button.setCheckable(False)
+        self.wordlist_Button.setObjectName("wordlist_Button")
         Wordle.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Wordle)
         self.statusbar.setObjectName("statusbar")
@@ -907,6 +920,7 @@ class Ui_Wordle(object):
         self.N_pushButton.setText(_translate("Wordle", "N"))
         self.Z_pushButton.setText(_translate("Wordle", "Z"))
         self.M_pushButton.setText(_translate("Wordle", "M"))
+
 
 
 class Ui_GameEnded(object):
