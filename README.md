@@ -1,5 +1,6 @@
 # wordle-inspired
 
-TODO:
+First Alpha Version v1.0
 
-- Se una lettera viene identificata come verde, non puo' tornare arancione.
+- Added custom wordlist method
+- Optimized chars recognition for correct color display
